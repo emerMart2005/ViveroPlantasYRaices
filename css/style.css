@@ -1,0 +1,100 @@
+/* ===== Estilos Generales ===== */
+body {
+  background-color: #f0f5f1;
+  color: #6b8e6e;
+}
+
+.navbar {
+  background-color: white !important;
+}
+
+.nav-link {
+  color: #8b5e3c !important;
+}
+
+.nav-link.active {
+  color: #8b5e3c !important;
+}
+
+/* ===== Barra de Búsqueda ===== */
+#barraBusqueda {
+  position: absolute;
+  top: 100%; /* Posición relativa al botón */
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 600px;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 1050;
+  transition: all 0.3s ease;
+}
+
+/* ===== Carrusel ===== */
+#carouselExampleIndicators {
+  height: 600px;
+  overflow: hidden;
+}
+
+#carouselExampleIndicators .carousel-inner .carousel-item img {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Altura adaptable en pantallas pequeñas */
+@media (max-width: 768px) {
+  #carouselExampleIndicators {
+    height: 300px;
+  }
+}
+
+/* ===== Cards ===== */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #a3c4a8;
+}
+
+.card-text {
+  color: #6b8e6e;
+}
+
+/* ===== Footer ===== */
+footer {
+  background-color: #8b5e3c !important;
+}
+
+footer .text-decoration-none {
+  color: #ffffff !important;
+}
+@media (max-width: 576px) {
+  .fs-3 {
+    font-size: 1.2rem !important;
+  }
+
+  .fs-6 {
+    font-size: 0.8rem !important;
+  }
+
+  #btnMostrarBusqueda {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+
+  .bi {
+    font-size: 1rem;
+  }
+
+  .p-3 {
+    padding: 0.5rem !important;
+  }
+}
+@media (max-width: 576px) {
+  .banner-text {
+    font-size: 1rem !important;
+    white-space: nowrap; /* Evita el salto de línea si hay espacio */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Si igual no entra, corta con "..." */
+  }
+}
