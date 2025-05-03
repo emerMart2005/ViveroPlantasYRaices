@@ -5,7 +5,7 @@ body {
 }
 
 .navbar {
-  background-color: white !important;
+  background-color: #f0f5f1 !important;
 }
 
 .nav-link {
@@ -97,4 +97,66 @@ footer .text-decoration-none {
     overflow: hidden;
     text-overflow: ellipsis; /* Si igual no entra, corta con "..." */
   }
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 510px; /* Altura total fija */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-img {
+  width: 100%;
+  height: 306px; /* Tamaño fijo */
+  object-fit: cover; /* La imagen se recorta si es más grande */
+}
+
+.product-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Empuja el botón al fondo */
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.product-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.product-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.2;
+  min-height: 2.4rem; /* Asegura alineación entre cards */
+}
+
+.product-price {
+  font-size: 0.9rem;
+  color: #28a745;
+  margin-top: 0.25rem; /* Pegado al texto */
+}
+
+.product-button {
+  width: 100%;
+  border: 1px solid #28a745;
+  color: #28a745;
+  background-color: transparent;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 1rem;
+}
+
+.product-button:hover {
+  background-color: #28a745;
+  color: white;
 }
