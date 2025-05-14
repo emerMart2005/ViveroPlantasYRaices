@@ -25,16 +25,17 @@ body {
 #barraBusqueda {
   position: absolute;
   top: 100%;
-  left: 0;
-  right: 0;
-  margin: auto;
-  max-width: 600px;
-  background-color: white;
-  padding: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 800px;
   z-index: 1050;
   transition: all 0.3s ease;
+}
+
+#barraBusqueda input:focus {
+  outline: 1px solid var(--verde-principal);
+  box-shadow: none;
 }
 
 /* ===== Carrusel ===== */
@@ -55,12 +56,20 @@ body {
 }
 
 /* ===== Cards ===== */
+
+.promotion-card .product-img {
+  height: 350px;
+  object-fit: cover;
+  width: 100%;
+  display: block;
+}
+
 .card {
   background-color: #ffffff;
   border: 1px solid var(--verde-borde);
   display: flex;
   flex-direction: column;
-  height: 510px;
+  min-height: 510px;
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -189,14 +198,14 @@ footer .text-decoration-none {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
   /* iPad Pro y pantallas similares: 4 por fila */
   .grid-cards {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1200px) {
   /* Escritorio amplio: 5 por fila */
   .grid-cards {
     grid-template-columns: repeat(5, 1fr);
@@ -261,4 +270,38 @@ footer .text-decoration-none {
 
 .object-fit-cover {
   object-fit: cover;
+}
+
+/* Estilo adicional para cards de promoción */
+.card .text-decoration-line-through {
+  font-size: 0.9em;
+}
+
+/* Badge de descuento */
+.card > .position-absolute {
+  z-index: 1;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.icon-hamburguesa {
+  color: black;
+}
+
+.offcanvas-body .nav-link.active {
+  font-weight: bold;
+  color: var(--verde-principal);
+  border-left: 4px solid var(--verde-principal);
+  padding-left: 12px;
+}
+
+.offcanvas-body .nav-link {
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+.offcanvas-body .nav-link:hover {
+  background-color: rgba(0, 128, 0, 0.1);
+  color: var(--verde-principal);
 }
