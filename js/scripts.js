@@ -250,4 +250,52 @@ document.addEventListener("DOMContentLoaded", function () {
   // Hacer el carrito accesible globalmente
   window.Carrito = Carrito;
   window.procesarPago = procesarPago;
+
+  // Código para el carrusel con desplazamiento de 1 en 1 y 3 visibles en escritorio
+  const multipleCardCarousel = document.querySelector(
+    "#carouselExampleControls"
+  );
+
+  if (multipleCardCarousel) {
+    // Validar que exista el carrusel
+    if (window.matchMedia("(min-width: 768px)").matches) {
+      const carousel = new bootstrap.Carousel(multipleCardCarousel, {
+        interval: false,
+        wrap: false,
+      });
+
+      const carouselInner =
+        multipleCardCarousel.querySelector(".carousel-inner");
+      const carouselWidth = carouselInner.scrollWidth;
+      const cardWidth =
+        multipleCardCarousel.querySelector(".carousel-item").offsetWidth;
+      let scrollPosition = 0;
+
+      multipleCardCarousel
+        .querySelector(".carousel-control-next")
+        .addEventListener("click", function () {
+          if (scrollPosition < carouselWidth - cardWidth * 3) {
+            scrollPosition += cardWidth;
+            carouselInner.scroll({
+              left: scrollPosition,
+              behavior: "smooth",
+            });
+          }
+        });
+
+      multipleCardCarousel
+        .querySelector(".carousel-control-prev")
+        .addEventListener("click", function () {
+          if (scrollPosition > 0) {
+            scrollPosition -= cardWidth;
+            carouselInner.scroll({
+              left: scrollPosition,
+              behavior: "smooth",
+            });
+          }
+        });
+    } else {
+      multipleCardCarousel.classList.add("slide");
+    }
+  }
 });

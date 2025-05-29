@@ -311,81 +311,8 @@
       </div>
     </div>
 
-    <!-- Carrusel -->
-    <!--
-    <div class="container-fluid p-0 mt-0">
-      <div id="carouselExampleIndicators" class="carousel slide">
-        <div class="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-        </div>
-
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img
-              src="img/baner.webp"
-              class="d-block w-100"
-              alt="Banner de plantas y jardinería"
-            />
-          </div>
-          <div class="carousel-item">
-            <img
-              src="img/baner.webp"
-              class="d-block w-100"
-              alt="Banner de plantas y jardinería"
-            />
-          </div>
-          <div class="carousel-item">
-            <img
-              src="img/baner.webp"
-              class="d-block w-100"
-              alt="Banner de plantas y jardinería"
-            />
-          </div>
-        </div>
-
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Anterior</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Siguiente</span>
-        </button>
-      </div>
-    </div>
--->
-
-    <!-- Sección de Promociones -->
-    <div class="container-fluid my-5">
+    <!-- Título y contador fuera del carrusel -->
+    <div class="container mt-5">
       <div class="row">
         <div class="col-12 text-center mb-4">
           <h2 class="fw-bold" style="color: var(--verde-principal)">
@@ -397,11 +324,12 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <!-- Cambio clave aquí -->
-        <!-- Producto en promoción 1 -->
-        <div class="col">
+    <!-- carrusel de promociones-->
+    <div id="carouselExampleControls" class="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
           <div class="card h-100 promotion-card" data-id="101">
             <span
               class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 m-2 rounded"
@@ -427,8 +355,7 @@
           </div>
         </div>
 
-        <!-- Producto en promoción 2 -->
-        <div class="col">
+        <div class="carousel-item">
           <div class="card h-100 promotion-card" data-id="102">
             <span
               class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 m-2 rounded"
@@ -443,9 +370,9 @@
               <h5 class="product-title">Bejequillo tinerfeño</h5>
               <div class="product-text">
                 <span class="text-muted text-decoration-line-through"
-                  >$60.476</span
+                  >$65.586</span
                 >
-                <span class="fw-bold text-danger product-price">$65.586</span>
+                <span class="fw-bold text-danger product-price">$60.476</span>
               </div>
               <button class="btn btn-success product-button mt-2 w-100">
                 <i class="bi bi-cart-plus"></i> Agregar
@@ -454,8 +381,7 @@
           </div>
         </div>
 
-        <!-- Producto en promoción 3 -->
-        <div class="col">
+        <div class="carousel-item">
           <div class="card h-100 promotion-card" data-id="103">
             <span
               class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 m-2 rounded"
@@ -480,7 +406,53 @@
             </div>
           </div>
         </div>
+
+        <div class="carousel-item">
+          <div class="card h-100 promotion-card" data-id="103">
+            <span
+              class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 m-2 rounded"
+              >-30%</span
+            >
+            <img
+              src="img/Sedum erizo de mar.webp"
+              class="card-img-top product-img"
+              alt="Producto en promoción"
+            />
+            <div class="card-body product-info">
+              <h5 class="product-title">Anacampseros rufescens</h5>
+              <div class="product-text">
+                <span class="text-muted text-decoration-line-through"
+                  >$60.368</span
+                >
+                <span class="fw-bold text-danger product-price">$34.846</span>
+              </div>
+              <button class="btn btn-success product-button mt-2 w-100">
+                <i class="bi bi-cart-plus"></i> Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agrega más items de carrusel según sea necesario -->
       </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
 
     <!-- Cards de Productos -->
