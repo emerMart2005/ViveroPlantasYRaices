@@ -1,31 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // 1. Funcionalidad de búsqueda (se mantiene igual)
-  const btnMostrarBusqueda = document.getElementById("btnMostrarBusqueda");
-  const barraBusqueda = document.getElementById("barraBusqueda");
-
-  // Solo si existen ambos elementos continúo con la lógica
-  if (btnMostrarBusqueda && barraBusqueda) {
-    btnMostrarBusqueda.addEventListener("click", function () {
-      // Alterno la visibilidad de la barra
-      barraBusqueda.classList.toggle("d-none");
-
-      // Si está visible, hago focus al input automáticamente
-      if (!barraBusqueda.classList.contains("d-none")) {
-        barraBusqueda.querySelector("input")?.focus();
-      }
-    });
-
-    document.addEventListener("click", function (event) {
-      const clickDentroBusqueda = barraBusqueda.contains(event.target);
-      const clickEnBoton = btnMostrarBusqueda.contains(event.target);
-
-      // Si el clic es fuera de la barra y del botón, oculto la barra
-      if (!clickDentroBusqueda && !clickEnBoton) {
-        barraBusqueda.classList.add("d-none");
-      }
-    });
-  }
-
   // 2. Carrito de compras (con corrección para puntos de mil)
   const Carrito = {
     // Recupero el carrito desde localStorage, si no hay nada uso arreglo vacío
@@ -251,51 +224,75 @@ document.addEventListener("DOMContentLoaded", function () {
   window.Carrito = Carrito;
   window.procesarPago = procesarPago;
 
-  // Código para el carrusel con desplazamiento de 1 en 1 y 3 visibles en escritorio
-  const multipleCardCarousel = document.querySelector(
-    "#carouselExampleControls"
-  );
+  /// Código para carrusel personalizado #carouselPromo
+  const track = document.querySelector("#carouselPromo .carousel-track");
+  if (track) {
+    const items = track.children;
+    let isMoving = false;
 
-  if (multipleCardCarousel) {
-    // Validar que exista el carrusel
-    if (window.matchMedia("(min-width: 768px)").matches) {
-      const carousel = new bootstrap.Carousel(multipleCardCarousel, {
-        interval: false,
-        wrap: false,
+    function getItemWidth() {
+      return items[0].offsetWidth;
+    }
+
+    function moveNextPromo() {
+      if (isMoving) return;
+      isMoving = true;
+      const width = getItemWidth();
+      track.style.transition = "transform 0.5s ease-in-out";
+      track.style.transform = `translateX(-${width}px)`;
+
+      setTimeout(() => {
+        track.appendChild(track.firstElementChild);
+        track.style.transition = "none";
+        track.style.transform = "translateX(0)";
+        isMoving = false;
+      }, 500);
+    }
+
+    function movePrevPromo() {
+      if (isMoving) return;
+      isMoving = true;
+      const width = getItemWidth();
+      track.insertBefore(track.lastElementChild, track.firstElementChild);
+      track.style.transition = "none";
+      track.style.transform = `translateX(-${width}px)`;
+
+      requestAnimationFrame(() => {
+        track.style.transition = "transform 0.5s ease-in-out";
+        track.style.transform = "translateX(0)";
       });
 
-      const carouselInner =
-        multipleCardCarousel.querySelector(".carousel-inner");
-      const carouselWidth = carouselInner.scrollWidth;
-      const cardWidth =
-        multipleCardCarousel.querySelector(".carousel-item").offsetWidth;
-      let scrollPosition = 0;
-
-      multipleCardCarousel
-        .querySelector(".carousel-control-next")
-        .addEventListener("click", function () {
-          if (scrollPosition < carouselWidth - cardWidth * 3) {
-            scrollPosition += cardWidth;
-            carouselInner.scroll({
-              left: scrollPosition,
-              behavior: "smooth",
-            });
-          }
-        });
-
-      multipleCardCarousel
-        .querySelector(".carousel-control-prev")
-        .addEventListener("click", function () {
-          if (scrollPosition > 0) {
-            scrollPosition -= cardWidth;
-            carouselInner.scroll({
-              left: scrollPosition,
-              behavior: "smooth",
-            });
-          }
-        });
-    } else {
-      multipleCardCarousel.classList.add("slide");
+      setTimeout(() => {
+        isMoving = false;
+      }, 500);
     }
+
+    // Botones
+    document
+      .querySelector("#carouselPromo .next")
+      .addEventListener("click", moveNextPromo);
+    document
+      .querySelector("#carouselPromo .prev")
+      .addEventListener("click", movePrevPromo);
+
+    // Auto-desplazamiento cada 4 segundos
+    setInterval(() => {
+      moveNextPromo();
+    }, 4000);
   }
+
+  // Código para el botón de búsqueda expandible
+  // Solo se ejecuta si existe el botón y la barra de búsqueda
+  const btnToggle = document.getElementById("btnToggleBusqueda");
+  const barraBusqueda = document.getElementById("barraBusquedaExpandida");
+  const inputBusqueda = barraBusqueda.querySelector("input");
+
+  btnToggle.addEventListener("click", () => {
+    barraBusqueda.classList.toggle("d-none");
+
+    // Esperar a que se renderice y enfocar
+    if (!barraBusqueda.classList.contains("d-none")) {
+      setTimeout(() => inputBusqueda.focus(), 100);
+    }
+  });
 });

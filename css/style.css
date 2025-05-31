@@ -1,84 +1,158 @@
 :root {
+  /* Paleta base */
   --verde-principal: #6b8e6e;
   --verde-borde: #a3c4a8;
   --marron: #8b5e3c;
   --verde-precio: #28a745;
   --fondo: #f0f5f1;
+
+  /* Colores para el menú */
+  /* Colores para el menú */
+  --menu-fondo: #e7efe5; /* Verde hoja muy claro (tipo salvia suave) */
+  --menu-texto: #3d4d3a; /* Verde bosque oscuro (para contraste y legibilidad) */
+  --menu-hover: #cddbcf; /* Verde pálido para efecto hover */
+  --menu-borde-activo: #4a6a46; /* Verde profundo para marcar el activo */
+
+  /* Colores para textos */
+  --texto-principal: #333333;
+  --texto-suave: #5c5c5c;
+  --texto-banner: #ffffff; /* Ideal para letras claras sobre fondo oscuro */
+  --texto-banner-oscuro: #2c2c2c; /* Si el fondo del banner es claro */
+
+  /* Colores de acento */
+  --acento-suave: #dbead6;
+  --acento-claro: #e8f5e9;
+  --acento-dorado: #d4af37; /* para destacar precios especiales u ofertas */
+
+  /* Colores de fondo alternos */
+  --fondo-secundario: #e2e9e3;
+  --fondo-banner: #6b8e6e; /* Igual que verde-principal, para coherencia */
+
+  /* Estados */
+  --color-exito: #4caf50;
+  --color-advertencia: #ff9800;
+  --color-error: #f44336;
+  --color-info: #2196f3;
+
+  /* Neutros */
+  --gris-claro: #cccccc;
+  --gris-suave: #f9f9f9;
+  --negro-suave: #222222;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("../fonts/Nunito-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("../fonts/Nunito/Nunito-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
 }
 
 /* ===== Estilos Generales ===== */
 body {
   background-color: var(--fondo);
   color: var(--verde-principal);
+  font-family: "Nunito", sans-serif;
 }
-
-.navbar {
-  background-color: var(--fondo) !important;
+#barraBusquedaExpandida {
+  top: 80px;
 }
 
 .nav-link,
 .nav-link.active {
   color: var(--marron) !important;
 }
-
-/* ===== Barra de Búsqueda ===== */
-#barraBusqueda {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 800px;
-  z-index: 1050;
-  transition: all 0.3s ease;
+.banner-text {
+  color: var(--texto-banner-oscuro);
 }
-
-#barraBusqueda input:focus {
-  outline: 1px solid var(--verde-principal);
-  box-shadow: none;
-}
-
 /* ===== Carrusel ===== */
-.carousel-inner {
-  padding: 1em;
-}
+
 .card {
   margin: 0 0.5em;
   box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
   border: none;
 }
-.carousel-control-prev,
-.carousel-control-next {
-  background-color: #e1e1e1;
-  width: 6vh;
-  height: 6vh;
-  border-radius: 50%;
-  top: 50%;
-  transform: translateY(-50%);
+.card img {
+  max-height: 100%;
 }
+/* ===== Carrusel ===== */
+
 @media (min-width: 768px) {
   .carousel-item {
     margin-right: 0;
     flex: 0 0 33.333333%;
     display: block;
   }
-  .carousel-inner {
-    display: flex;
+}
+
+/* Tablet: 2 cards por vista */
+@media (min-width: 768px) and (max-width: 991px) {
+  .carousel-custom .carousel-item {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
   }
 }
-.card .img-wrapper {
-  max-width: 100%;
-  height: 13em;
+
+.carousel-custom {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  transition: transform 0.5s ease-in-out;
 }
-.card img {
-  max-height: 100%;
+
+.carousel-item {
+  flex: 0 0 33.3333%;
+  padding: 0.5rem;
+  box-sizing: border-box;
 }
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #ffffffcc;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 2;
+}
+.carousel-btn.prev {
+  left: 10px;
+}
+.carousel-btn.next {
+  right: 10px;
+}
+/* Asegura visibilidad del carrusel en móviles */
 @media (max-width: 767px) {
-  .card .img-wrapper {
-    height: 17em;
+  .carousel-custom {
+    display: block;
+    width: 100%;
+  }
+
+  .carousel-custom .carousel-track {
+    display: flex !important;
+    width: 100%;
+  }
+
+  .carousel-custom .carousel-item {
+    display: block; /* <- CLAVE PARA QUE SE VEA */
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    padding: 0.5rem;
   }
 }
 
@@ -96,7 +170,7 @@ body {
   border: 1px solid var(--verde-borde);
   display: flex;
   flex-direction: column;
-  min-height: 510px;
+  min-height: 410px; /* Altura mínima para las cards */
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -108,7 +182,7 @@ body {
 
 .product-img {
   width: 100%;
-  height: 306px;
+  height: 306px; /* Altura fija para las imágenes/contenedor de los productos */
   object-fit: cover;
 }
 
@@ -331,4 +405,108 @@ footer .text-decoration-none {
 .offcanvas-body .nav-link:hover {
   background-color: rgba(0, 128, 0, 0.1);
   color: var(--verde-principal);
+}
+
+#barraBusquedaExpandida .container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icono-lupa {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.barra-input {
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  flex-grow: 1;
+  background: transparent;
+}
+
+.barra-input::placeholder {
+  color: #888;
+}
+
+/* Opcional: quitar padding interno del input group si estás usando Bootstrap */
+.input-group-text,
+.form-control {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* hoover menu escritorio */
+/* Estilo general para todos los menús */
+.nav-link {
+  color: #5e3c23; /* Color base */
+  transition: background-color 0.3s;
+}
+
+/* Hover solo en pantallas grandes (escritorio) */
+/* Aplica solo a menú de escritorio */
+@media (min-width: 576px) {
+  .navbar-nav .nav-link {
+    color: #8b5c33; /* marrón claro */
+    font-weight: normal;
+    border-bottom: 3px solid transparent;
+    padding-left: 1rem;
+    transition: all 0.3s;
+  }
+  @media (min-width: 576px) {
+    .navbar {
+      background-color: var(
+        --menu-fondo
+      ) !important; /* o el color que elijas */
+    }
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #5a3c1a; /* marrón más oscuro */
+  }
+
+  .navbar-nav .nav-link.active {
+    color: #5a3c1a; /* marrón más oscuro */
+    font-weight: bold;
+    border-left: 4px solid #6e866c; /* verde suave */
+    background-color: transparent;
+  }
+}
+
+/* Solo para móviles (menos de 576px) */
+@media (max-width: 575.98px) {
+  .search-bar-mobile {
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .search-bar-mobile input.form-control {
+    border: none;
+    padding-left: 15px;
+    font-size: 14px;
+  }
+
+  .search-bar-mobile input.form-control:focus {
+    box-shadow: none;
+  }
+
+  .search-bar-mobile .btn-search {
+    background-color: #6e866c; /* verde suave */
+    border: none;
+    color: white;
+    border-left: 1px solid #5c725a;
+    padding: 0 15px;
+  }
+
+  .search-bar-mobile .btn-search:hover {
+    background-color: #5c725a;
+  }
+}
+@media (max-width: 767.98px) {
+  h2.fw-bold {
+    font-size: 2rem !important;
+  }
 }
