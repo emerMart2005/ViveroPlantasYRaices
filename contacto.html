@@ -6,6 +6,16 @@
     <title>Contacto</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="bootstrap/icons/bootstrap-icons.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
@@ -327,52 +337,118 @@
 
     <!-- Contenido principal -->
     <div class="container my-5">
-      <h2 class="text-center mb-4">Contáctanos</h2>
+      <div class="formulario-bg">
+        <h2 class="text-center mb-4">Contáctanos</h2>
 
-      <form>
-        <div class="mb-3">
-          <label for="nombre" class="form-label">Nombre</label>
-          <input
-            type="text"
-            class="form-control"
-            id="nombre"
-            placeholder="Tu nombre completo"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="correo" class="form-label">Correo Electrónico</label>
-          <input
-            type="email"
-            class="form-control"
-            id="correo"
-            placeholder="tucorreo@ejemplo.com"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="mensaje" class="form-label">Mensaje</label>
-          <textarea
-            class="form-control"
-            id="mensaje"
-            rows="5"
-            placeholder="Escribe tu mensaje aquí"
-            required
-          ></textarea>
-        </div>
-        <button type="submit" class="btn btn-success">Enviar mensaje</button>
-      </form>
+        <form>
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              placeholder="Tu nombre completo"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="correo" class="form-label">Correo Electrónico</label>
+            <input
+              type="email"
+              class="form-control"
+              id="correo"
+              placeholder="tucorreo@ejemplo.com"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="mensaje" class="form-label">Mensaje</label>
+            <textarea
+              class="form-control"
+              id="mensaje"
+              rows="5"
+              placeholder="Escribe tu mensaje aquí"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="container my-4">
+      <h2 class="text-center mb-4">Ubicación</h2>
+      <div id="miMapa"></div>
     </div>
 
     <!-- Footer -->
     <footer
-      class="text-center py-4 mt-5"
-      style="background-color: var(--marron); color: white"
+      class="text-white pt-5 pb-3"
+      style="background-color: var(--marron)"
     >
-      <p class="mb-0">&copy; 2025. Todos los derechos reservados.</p>
+      <div class="container">
+        <div class="row text-center text-md-start">
+          <!-- Contacto -->
+          <div class="col-md-4 mb-4">
+            <h5 class="text-uppercase mb-3">Contáctanos</h5>
+            <p><i class="bi bi-geo-alt"></i> Sahagun, Córdoba</p>
+            <p><i class="bi bi-telephone"></i> +57 300 123 4567</p>
+            <p><i class="bi bi-envelope"></i> contacto@plantasyraices.com</p>
+          </div>
+
+          <!-- Enlaces -->
+          <div class="col-md-4 mb-4">
+            <h5 class="text-uppercase mb-3">Enlaces</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="index.html" class="footer-link">Catalogo</a>
+              </li>
+              <li>
+                <a href="consejos.html" class="footer-link">Consejos</a>
+              </li>
+              <li>
+                <a href="sobreNosotros.html" class="footer-link"
+                  >Sobre nosotros</a
+                >
+              </li>
+              <li>
+                <a href="contacto.html" class="footer-link">Contácto</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Redes Sociales -->
+          <div class="col-md-4 mb-4">
+            <h5 class="text-uppercase mb-3">Síguenos</h5>
+            <a href="#" class="footer-link d-block mb-2">
+              <i class="bi bi-instagram"></i> Instagram
+            </a>
+            <a href="#" class="footer-link d-block mb-2">
+              <i class="bi bi-facebook"></i> Facebook
+            </a>
+            <a href="#" class="footer-link d-block">
+              <i class="bi bi-whatsapp"></i> WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <hr class="border-top border-white opacity-50" />
+
+        <div class="text-center">
+          <p class="mb-0">
+            &copy; 2025 Plantas y Raíces. Todos los derechos reservados.
+          </p>
+        </div>
+      </div>
     </footer>
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.min.js"></script>
     <script src="js/scripts.js"></script>
   </body>
 </html>

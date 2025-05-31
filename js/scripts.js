@@ -295,4 +295,87 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => inputBusqueda.focus(), 100);
     }
   });
+
+  // Inicializar el mapa si existe el div con ID 'miMapa'
+  const API_KEY = "5b3ce3597851110001cf6248e85ceea8dc314a908625c56c1eb0cba2";
+
+  function inicializarMapa() {
+    const divMapa = document.getElementById("miMapa");
+    if (!divMapa) return;
+
+    const destino = [8.945412013898874, -75.43939539300182]; // Coordenadas del vivero
+    const map = L.map("miMapa").setView(destino, 15);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "© OpenStreetMap",
+    }).addTo(map);
+
+    const markerDestino = L.marker(destino).addTo(map);
+    markerDestino
+      .bindPopup("<b>Plantas y Raíces</b><br>Tu tienda de jardinería")
+      .openPopup();
+
+    // Intentar obtener ubicación del usuario
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const origen = [position.coords.latitude, position.coords.longitude];
+
+          const markerUsuario = L.marker(origen, { color: "blue" }).addTo(map);
+          markerUsuario.bindPopup("Estás aquí").openPopup();
+
+          // Centrar el mapa entre los dos puntos
+          const bounds = L.latLngBounds([origen, destino]);
+          map.fitBounds(bounds, { padding: [50, 50] });
+
+          // Trazo de ruta
+          await trazarRuta(map, origen, destino);
+        },
+        (error) => {
+          console.warn("Ubicación no permitida o fallida:", error.message);
+          alert("No se pudo obtener tu ubicación. Solo se mostrará el vivero.");
+        }
+      );
+    } else {
+      alert("Tu navegador no soporta geolocalización.");
+    }
+  }
+
+  // Función que llama a OpenRouteService y dibuja la ruta
+  async function trazarRuta(map, origen, destino) {
+    try {
+      const response = await fetch(
+        "https://api.openrouteservice.org/v2/directions/driving-car/geojson",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: API_KEY,
+          },
+          body: JSON.stringify({
+            coordinates: [
+              [origen[1], origen[0]], // Longitud, Latitud
+              [destino[1], destino[0]],
+            ],
+          }),
+        }
+      );
+
+      if (!response.ok) throw new Error("Error al obtener la ruta");
+
+      const data = await response.json();
+      const ruta = L.geoJSON(data, {
+        style: {
+          color: "green",
+          weight: 5,
+        },
+      }).addTo(map);
+    } catch (error) {
+      console.error("Error trazando la ruta:", error);
+      alert("No se pudo trazar la ruta. Intenta más tarde.");
+    }
+  }
+
+  inicializarMapa();
 });

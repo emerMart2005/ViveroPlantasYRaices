@@ -42,14 +42,14 @@
 
 @font-face {
   font-family: "Nunito";
-  src: url("../fonts/Nunito-Regular.ttf");
+  src: url("../fonts/Nunito/static/Nunito-Regular.ttf");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Nunito";
-  src: url("../fonts/Nunito/Nunito-Bold.ttf");
+  src: url("../fonts/Nunito/static/Nunito-Bold.ttf");
   font-weight: 700;
   font-style: normal;
 }
@@ -237,7 +237,14 @@ body {
   outline: 2px solid var(--verde-precio);
   outline-offset: 2px;
 }
-
+/* ===== Section ===== */
+section {
+  padding: 2rem 1rem;
+  background-color: var(--fondo-secundario);
+  border-radius: 8px;
+  color: black;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 /* ===== Footer ===== */
 footer {
   background-color: var(--marron) !important;
@@ -245,6 +252,35 @@ footer {
 
 footer .text-decoration-none {
   color: #ffffff !important;
+}
+.footer-link {
+  position: relative;
+  display: block; /* conserva layout vertical */
+  width: fit-content; /* <--- clave para limitar el ancho */
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.footer-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.footer-link:hover::after {
+  background-color: #ffffff;
 }
 
 /* ===== Responsive ===== */
@@ -443,10 +479,11 @@ footer .text-decoration-none {
 .nav-link {
   color: #5e3c23; /* Color base */
   transition: background-color 0.3s;
+  position: relative;
+  text-decoration: none;
 }
 
 /* Hover solo en pantallas grandes (escritorio) */
-/* Aplica solo a menú de escritorio */
 @media (min-width: 576px) {
   .navbar-nav .nav-link {
     color: #8b5c33; /* marrón claro */
@@ -455,22 +492,34 @@ footer .text-decoration-none {
     padding-left: 1rem;
     transition: all 0.3s;
   }
-  @media (min-width: 576px) {
-    .navbar {
-      background-color: var(
-        --menu-fondo
-      ) !important; /* o el color que elijas */
-    }
+
+  .navbar {
+    background-color: var(--menu-fondo) !important; /* color del menú */
+  }
+
+  .navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* justo debajo del texto */
+    height: 2px;
+    width: 0;
+    background-color: #8b5c33;
+    transition: width 0.3s ease;
   }
 
   .navbar-nav .nav-link:hover {
     color: #5a3c1a; /* marrón más oscuro */
   }
 
+  .navbar-nav .nav-link:hover::after {
+    width: 100%;
+  }
+
   .navbar-nav .nav-link.active {
     color: #5a3c1a; /* marrón más oscuro */
     font-weight: bold;
-    border-left: 4px solid #6e866c; /* verde suave */
+    border-bottom: 2px solid #6e866c; /* verde suave */
     background-color: transparent;
   }
 }
@@ -509,4 +558,32 @@ footer .text-decoration-none {
   h2.fw-bold {
     font-size: 2rem !important;
   }
+}
+#miMapa {
+  height: 600px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  #miMapa {
+    height: 300px; /* Reducimos la altura para móviles */
+  }
+}
+.formulario-bg {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.form-control {
+  background-color: #f8f9fa; /* gris claro */
+  border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+  background-color: #fff; /* blanco al enfocar */
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25); /* efecto de foco suave */
 }
