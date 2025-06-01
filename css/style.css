@@ -282,6 +282,13 @@ footer .text-decoration-none {
 .footer-link:hover::after {
   background-color: #ffffff;
 }
+@media (max-width: 575.98px) {
+  .footer-link {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}
 
 /* ===== Responsive ===== */
 @media (max-width: 576px) {
