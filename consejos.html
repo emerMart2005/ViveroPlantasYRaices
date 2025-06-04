@@ -326,7 +326,7 @@
     </div>
 
     <!-- Contenido principal -->
-    <main class="container pt-4">
+    <main class="container py-4">
       <section>
         <h2 class="fs-2 mb-4">Consejos para un jardín saludable</h2>
         <p>
@@ -348,7 +348,13 @@
                   Aprende los cuidados esenciales para mantener tus plantas
                   saludables y fuertes.
                 </p>
-                <a href="#" class="btn btn-primary">Leer más</a>
+                <button
+                  class="btn btn-leer-mas"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalCuidado"
+                >
+                  Leer más
+                </button>
               </div>
             </div>
           </div>
@@ -362,10 +368,16 @@
               <div class="card-body">
                 <h5 class="card-title">La importancia del riego</h5>
                 <p class="card-text">
-                  Conoce cómo regar tus plantas para evitar el exceso o la falta
-                  de agua.
+                  Conoce cómo regar tus plantas correctamente para evitar el
+                  exceso o la falta de agua y mantenerlas saludables.
                 </p>
-                <a href="#" class="btn btn-primary">Leer más</a>
+                <button
+                  class="btn btn-leer-mas"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalRiego"
+                >
+                  Leer más
+                </button>
               </div>
             </div>
           </div>
@@ -382,13 +394,222 @@
                   ¿Sabías que la fertilización es clave para el crecimiento de
                   tus plantas? Aquí te lo contamos todo.
                 </p>
-                <a href="#" class="btn btn-primary">Leer más</a>
+                <button
+                  class="btn btn-leer-mas"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalFertilizacion"
+                >
+                  Leer más
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
     </main>
+
+    <!-- MODAL 1 -->
+    <div class="modal fade" id="modalCuidado" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">El cuidado básico de las plantas</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <ol>
+              <li>
+                <strong>Riego adecuado:</strong> Riega solo cuando la tierra
+                esté seca al tacto. Evita el exceso de agua para prevenir la
+                pudrición de raíces.
+              </li>
+              <li>
+                <strong>Luz:</strong> Asegúrate de que reciban la cantidad de
+                luz adecuada. Algunas plantas requieren luz directa, otras
+                prefieren luz indirecta.
+              </li>
+              <li>
+                <strong>Sustrato:</strong> Usa tierra apropiada para cada tipo
+                de planta. Debe tener buen drenaje y permitir la aireación de
+                las raíces.
+              </li>
+              <li>
+                <strong>Humedad y ventilación:</strong> Mantén una humedad
+                adecuada (especialmente en plantas tropicales) y asegúrate de
+                que el espacio tenga buena ventilación.
+              </li>
+              <li>
+                <strong>Temperatura:</strong> La mayoría prefieren temperaturas
+                entre 18 °C y 25 °C. Evita corrientes frías y cambios bruscos.
+              </li>
+              <li>
+                <strong>Poda y limpieza:</strong> Retira hojas secas o dañadas y
+                limpia el polvo de las hojas con un paño húmedo.
+              </li>
+              <li>
+                <strong>Fertilización:</strong> Aplica abono cada 1 o 2 meses
+                durante la primavera y el verano, usando productos adecuados
+                para cada planta.
+              </li>
+              <li>
+                <strong>Maceta adecuada:</strong> Usa macetas con buen drenaje y
+                cambia de tamaño cuando las raíces lo necesiten.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 2 -->
+    <div class="modal fade" id="modalRiego" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">La importancia del riego</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              El riego es uno de los cuidados más fundamentales para mantener
+              tus plantas sanas y en crecimiento. Una buena hidratación permite
+              que las raíces absorban los nutrientes del suelo, mientras que un
+              mal riego, ya sea por exceso o por escasez, puede afectar
+              gravemente su salud. Conocer cuándo, cómo y cuánta agua aplicar
+              según el tipo de planta y su entorno es clave para lograr un
+              jardín o espacio verde vibrante y duradero.
+            </p>
+
+            <p>
+              A continuación, te compartimos algunos consejos más específicos
+              para regar tus plantas de forma adecuada:
+            </p>
+
+            <ol>
+              <li>
+                <strong>Evita el exceso de agua:</strong> El riego excesivo
+                puede pudrir las raíces y atraer hongos o plagas.
+              </li>
+              <li>
+                <strong>Evita la falta de agua:</strong> La sequedad prolongada
+                debilita la planta, seca sus hojas y puede frenar su
+                crecimiento.
+              </li>
+              <li>
+                <strong>Conoce las necesidades de cada planta:</strong> No todas
+                requieren la misma cantidad o frecuencia de riego. Investiga su
+                especie.
+              </li>
+              <li>
+                <strong>Observa el sustrato:</strong> Toca la tierra con el
+                dedo; si está seca a 2-3 cm de profundidad, es momento de regar.
+              </li>
+              <li>
+                <strong>Riega en el momento adecuado:</strong> Lo ideal es
+                hacerlo por la mañana o al atardecer, evitando el calor del
+                mediodía.
+              </li>
+              <li>
+                <strong>Utiliza el método correcto:</strong> Algunas plantas se
+                benefician más con riego desde la base, otras desde arriba.
+              </li>
+              <li>
+                <strong>Calidad del agua:</strong> Siempre que sea posible, usa
+                agua sin cloro o reposada, especialmente para plantas delicadas.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 3 -->
+    <div
+      class="modal fade"
+      id="modalFertilizacion"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Fertilización adecuada</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              La fertilización es esencial para el crecimiento y la salud de tus
+              plantas. Con el tiempo, los nutrientes del sustrato se agotan, por
+              lo que es necesario reponerlos mediante fertilizantes. Aplicar los
+              nutrientes adecuados fortalece raíces, favorece la producción de
+              hojas y flores, y mejora la resistencia de las plantas frente a
+              enfermedades y condiciones ambientales adversas.
+            </p>
+
+            <p>
+              A continuación, te compartimos algunas recomendaciones para
+              aplicar fertilizantes de manera efectiva:
+            </p>
+
+            <ol>
+              <li>
+                <strong>Elige el fertilizante adecuado:</strong> Usa
+                fertilizantes específicos para cada tipo de planta (interior,
+                florales, cactus, etc.).
+              </li>
+              <li>
+                <strong>Sigue las instrucciones del fabricante:</strong> Nunca
+                sobrepases la dosis recomendada, ya que un exceso puede dañar
+                las raíces.
+              </li>
+              <li>
+                <strong>Fertiliza en la época correcta:</strong> Aplica
+                fertilizante en primavera y verano, que son las estaciones de
+                mayor crecimiento.
+              </li>
+              <li>
+                <strong
+                  >No fertilices plantas enfermas o recién
+                  trasplantadas:</strong
+                >
+                Espera a que estén recuperadas o adaptadas antes de aplicar
+                nutrientes.
+              </li>
+              <li>
+                <strong>Usa fertilizantes líquidos o granulados:</strong> Los
+                líquidos actúan más rápido; los granulados ofrecen nutrición
+                prolongada.
+              </li>
+              <li>
+                <strong>Riega después de fertilizar (si es necesario):</strong>
+                Esto ayuda a distribuir los nutrientes y evitar la acumulación
+                en la superficie.
+              </li>
+              <li>
+                <strong>Observa cómo responde la planta:</strong> Hojas muy
+                verdes, manchas o quemaduras pueden indicar exceso o carencia de
+                nutrientes.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Footer -->
     <footer
@@ -398,7 +619,7 @@
       <div class="container">
         <div class="row text-center text-md-start">
           <!-- Contacto -->
-          <div class="col-md-4 mb-4">
+          <div class="col-md-4 mb-4 text-center">
             <h5 class="text-uppercase mb-3">Contáctanos</h5>
             <p><i class="bi bi-geo-alt"></i> Sahagun, Córdoba</p>
             <p><i class="bi bi-telephone"></i> +57 300 123 4567</p>
@@ -406,7 +627,7 @@
           </div>
 
           <!-- Enlaces -->
-          <div class="col-md-4 mb-4">
+          <div class="col-md-4 mb-4 text-center">
             <h5 class="text-uppercase mb-3">Enlaces</h5>
             <ul class="list-unstyled">
               <li>
@@ -427,19 +648,28 @@
           </div>
 
           <!-- Redes Sociales -->
-          <div class="col-md-4 mb-4">
+          <div class="col-md-4 mb-4 text-center">
             <h5 class="text-uppercase mb-3">Síguenos</h5>
-            <a href="#" class="footer-link d-block mb-2">
-              <i class="bi bi-instagram"></i> Instagram
-            </a>
-            <a href="#" class="footer-link d-block mb-2">
-              <i class="bi bi-facebook"></i> Facebook
-            </a>
-            <a href="#" class="footer-link d-block">
-              <i class="bi bi-whatsapp"></i> WhatsApp
-            </a>
+            <ul class="list-unstyled d-inline-block text-start">
+              <li class="mb-2">
+                <a href="#" class="footer-link">
+                  <i class="bi bi-instagram"></i> Instagram
+                </a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="footer-link">
+                  <i class="bi bi-facebook"></i> Facebook
+                </a>
+              </li>
+              <li>
+                <a href="#" class="footer-link">
+                  <i class="bi bi-whatsapp"></i> WhatsApp
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
+        <!-- Cierre de .row -->
 
         <hr class="border-top border-white opacity-50" />
 
@@ -449,7 +679,13 @@
           </p>
         </div>
       </div>
+      <!-- Cierre de .container -->
     </footer>
+
+    <!-- Botón de WhatsApp -->
+    <a href="https://wa.me/TUNUMERO" class="whatsapp-float">
+      <i class="bi bi-whatsapp"></i>
+    </a>
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/scripts.js"></script>

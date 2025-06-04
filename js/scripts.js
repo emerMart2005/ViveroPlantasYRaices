@@ -59,11 +59,19 @@ document.addEventListener("DOMContentLoaded", function () {
     },
 
     vaciar() {
-      // Confirmo antes de vaciar el carrito completamente
-      if (confirm("¿Estás seguro de vaciar el carrito?")) {
-        this.items = [];
-        this.guardar();
-      }
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Se eliminarán todos los productos del carrito.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, vaciar",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.items = [];
+          this.guardar();
+        }
+      });
     },
 
     calcularTotal() {
@@ -161,15 +169,22 @@ document.addEventListener("DOMContentLoaded", function () {
   function procesarPago() {
     // Si el carrito está vacío, no permito continuar
     if (Carrito.items.length === 0) {
-      alert("El carrito está vacío");
+      Swal.fire({
+        icon: "info",
+        title: "Carrito vacío",
+        text: "Agrega productos antes de pagar.",
+      });
       return;
     }
     // Mensaje de confirmación de compra
-    alert(
-      `Compra realizada por $${Carrito.calcularTotal().toLocaleString(
+    Swal.fire({
+      icon: "success",
+      title: "¡Compra exitosa!",
+      html: `Compra realizada por <strong>$${Carrito.calcularTotal().toLocaleString(
         "es-CL"
-      )}\n¡Gracias por tu compra!`
-    );
+      )}</strong><br>¡Gracias por tu compra!`,
+      confirmButtonText: "Aceptar",
+    });
     // Limpio el carrito
     Carrito.vaciar();
 
@@ -322,23 +337,52 @@ document.addEventListener("DOMContentLoaded", function () {
         async (position) => {
           const origen = [position.coords.latitude, position.coords.longitude];
 
-          const markerUsuario = L.marker(origen, { color: "blue" }).addTo(map);
+          const markerUsuario = L.marker(origen).addTo(map);
           markerUsuario.bindPopup("Estás aquí").openPopup();
 
           // Centrar el mapa entre los dos puntos
           const bounds = L.latLngBounds([origen, destino]);
           map.fitBounds(bounds, { padding: [50, 50] });
 
-          // Trazo de ruta
+          // Trazado de ruta
           await trazarRuta(map, origen, destino);
         },
         (error) => {
-          console.warn("Ubicación no permitida o fallida:", error.message);
-          alert("No se pudo obtener tu ubicación. Solo se mostrará el vivero.");
+          let mensaje = "";
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              mensaje = "No permitiste acceder a tu ubicación.";
+              break;
+            case error.POSITION_UNAVAILABLE:
+              mensaje = "La ubicación no está disponible.";
+              break;
+            case error.TIMEOUT:
+              mensaje = "La solicitud de ubicación tardó demasiado.";
+              break;
+            default:
+              mensaje = "Ocurrió un error al obtener tu ubicación.";
+          }
+
+          Swal.fire({
+            icon: "warning",
+            title: "Ubicación no obtenida",
+            text: mensaje,
+          });
+
+          console.warn("Geolocalización fallida:", error.message);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0,
         }
       );
     } else {
-      alert("Tu navegador no soporta geolocalización.");
+      Swal.fire({
+        icon: "error",
+        title: "Geolocalización no soportada",
+        text: "Tu navegador no soporta geolocalización.",
+      });
     }
   }
 
@@ -373,7 +417,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }).addTo(map);
     } catch (error) {
       console.error("Error trazando la ruta:", error);
-      alert("No se pudo trazar la ruta. Intenta más tarde.");
+      Swal.fire({
+        icon: "error",
+        title: "Ruta no disponible",
+        text: "No se pudo trazar la ruta. Intenta más tarde.",
+      });
     }
   }
 
