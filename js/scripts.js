@@ -167,7 +167,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function procesarPago() {
-    // Si el carrito está vacío, no permito continuar
     if (Carrito.items.length === 0) {
       Swal.fire({
         icon: "info",
@@ -176,23 +175,49 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       return;
     }
-    // Mensaje de confirmación de compra
-    Swal.fire({
-      icon: "success",
-      title: "¡Compra exitosa!",
-      html: `Compra realizada por <strong>$${Carrito.calcularTotal().toLocaleString(
-        "es-CL"
-      )}</strong><br>¡Gracias por tu compra!`,
-      confirmButtonText: "Aceptar",
-    });
-    // Limpio el carrito
-    Carrito.vaciar();
 
-    // Cierro el offcanvas del carrito si está abierto
-    const offcanvas = bootstrap.Offcanvas.getInstance(
-      document.getElementById("offcanvasCar")
-    );
-    if (offcanvas) offcanvas.hide();
+    const email = prompt("Ingresa tu correo para recibir la factura:");
+    if (!email) return;
+
+    const total = Carrito.calcularTotal();
+
+    // Formatear el carrito como texto plano
+    const carritoFormateado = Carrito.items
+      .map(
+        (item) =>
+          `${item.nombre} x${item.cantidad} - $${(
+            item.precio * item.cantidad
+          ).toLocaleString("es-CL")}`
+      )
+      .join("\n");
+
+    // Enviar con EmailJS
+    emailjs
+      .send("service_idddv29", "template_xqbg1rg", {
+        email: email,
+        carrito: carritoFormateado,
+        total: total.toLocaleString("es-CL"),
+      })
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "¡Factura enviada!",
+          text: "Revisa tu correo.",
+        });
+        Carrito.vaciar();
+        const offcanvas = bootstrap.Offcanvas.getInstance(
+          document.getElementById("offcanvasCar")
+        );
+        if (offcanvas) offcanvas.hide();
+      })
+      .catch((error) => {
+        console.error("Error al enviar factura:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Error al enviar",
+          text: "Tu compra fue exitosa, pero no se pudo enviar el correo.",
+        });
+      });
   }
 
   // 4. Manejador de eventos para productos
