@@ -451,4 +451,31 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   inicializarMapa();
+
+  // Duración en segundos (4h 27m 25s)
+  let tiempoRestante = 4 * 3600 + 27 * 60 + 25;
+
+  function actualizarCountdown() {
+    const countdown = document.getElementById("countdown");
+
+    if (tiempoRestante <= 0) {
+      countdown.textContent = "¡Oferta finalizada!";
+      clearInterval(intervalo);
+      return;
+    }
+
+    const horas = Math.floor(tiempoRestante / 3600);
+    const minutos = Math.floor((tiempoRestante % 3600) / 60);
+    const segundos = tiempoRestante % 60;
+
+    countdown.textContent =
+      `${String(horas).padStart(2, "0")}:` +
+      `${String(minutos).padStart(2, "0")}:` +
+      `${String(segundos).padStart(2, "0")}`;
+
+    tiempoRestante--;
+  }
+
+  const intervalo = setInterval(actualizarCountdown, 1000);
+  actualizarCountdown(); // Llamada inicial
 });

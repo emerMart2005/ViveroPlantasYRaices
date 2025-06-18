@@ -389,6 +389,12 @@ ul.list-unstyled {
   transform: scale(0.95);
 }
 
+.btn-agregar:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
 /* Contador del carrito */
 #contador-carrito {
   position: absolute;
@@ -480,7 +486,6 @@ ul.list-unstyled {
   color: #888;
 }
 
-/* Opcional: quitar padding interno del input group si estás usando Bootstrap */
 .input-group-text,
 .form-control {
   background-color: transparent;
@@ -508,7 +513,7 @@ ul.list-unstyled {
   }
 
   .navbar {
-    background-color: var(--menu-fondo) !important; /* color del menú */
+    background-color: #dbe5ea !important; /* color del menú */
   }
 
   .navbar-nav .nav-link::after {
